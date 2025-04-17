@@ -121,6 +121,11 @@ header {
     box-shadow: 0 8px 25px rgba(142, 68, 173, 0.7);
 }
 
+.node:focus {
+    outline: 3px solid #3498db;
+    outline-offset: 4px;
+}
+
 .node h3 {
     font-size: 1rem;
     margin: 0;
@@ -209,13 +214,22 @@ line {
     right: 15px;
     font-size: 1.5rem;
     color: #e0e0e0;
+    background: none;
+    border: none;
     cursor: pointer;
     transition: color 0.3s;
+    padding: 0.5rem;
 }
 
-.close-btn:hover {
+.close-btn:hover,
+.close-btn:focus {
     color: #8e44ad;
-    /* Violet on hover */
+    /* Violet on hover/focus */
+}
+
+.close-btn:focus {
+    outline: 3px solid #3498db;
+    outline-offset: 2px;
 }
 
 .popup h2 {
@@ -290,6 +304,12 @@ line {
     color: #e0e0e0;
 }
 
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: 3px solid #3498db;
+    outline-offset: 2px;
+}
+
 .contact-form textarea {
     resize: vertical;
 }
@@ -312,6 +332,11 @@ line {
 .contact-form button:hover {
     opacity: 0.9;
     transform: scale(1.05);
+}
+
+.contact-form button:focus {
+    outline: 3px solid #3498db;
+    outline-offset: 2px;
 }
 
 .contact-info {
@@ -345,9 +370,15 @@ line {
     text-decoration: none;
 }
 
-.contact-info a:hover {
+.contact-info a:hover,
+.contact-info a:focus {
     color: #8e44ad;
     /* Violet au survol */
+}
+
+.contact-info a:focus {
+    outline: 3px solid #3498db;
+    outline-offset: 2px;
 }
 
 /* Form Message */
@@ -356,6 +387,18 @@ line {
     border-radius: 4px;
     text-align: center;
     margin-bottom: 1rem;
+}
+
+/* Screen Reader Only */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
 }
 
 @media (max-width: 768px) {
@@ -397,7 +440,6 @@ line {
     .mobile-line {
         display: block;
     }
-
 
     .contact-section {
         padding: 2rem;

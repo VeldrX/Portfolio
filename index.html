@@ -9,101 +9,119 @@
 </head>
 
 <body>
-    <header>
+    <header role="banner">
         <h1>Mathis VASSY</h1>
     </header>
 
-    <section class="about-section">
-        <img src="https://via.placeholder.com/150" alt="Photo de profil">
-        <p>
-            Etudiant en deuxième année a Ynov Campus Lyon , je m'intéresse au domaine de la Data et notamment a l'IA.
-        </p>
-    </section>
+    <main role="main">
+        <section class="about-section" role="region" aria-labelledby="about-heading">
+            <h2 id="about-heading" class="sr-only">À propos</h2>
+            <img src="https://via.placeholder.com/150" alt="Photo de profil de Mathis Vassy">
+            <p>
+                Etudiant en deuxième année à Ynov Campus Lyon, je m'intéresse au domaine de la Data et notamment à l'IA.
+            </p>
+        </section>
 
-    <section class="projects-section">
-        <h2>Mes Projets</h2>
-        <div class="neural-network">
-            <svg>
-                <line class="desktop-line" x1="21.25%" y1="32.5%" x2="78.75%" y2="32.5%" stroke="#8e44ad"
-                    stroke-width="2" />
-                <line class="mobile-line" x1="50%" y1="21.67%" x2="50%" y2="51.67%" stroke="#8e44ad" stroke-width="2" />
-            </svg>
-            <div class="node node-1" onclick="openPopup('leak')">
-                <h3>Leak</h3>
-                <p>Jeux vidéo horreur et énigmatique</p>
+        <section class="projects-section" role="region" aria-labelledby="projects-heading">
+            <h2 id="projects-heading">Mes Projets</h2>
+            <div class="neural-network">
+                <svg aria-hidden="true">
+                    <line class="desktop-line" x1="21.25%" y1="32.5%" x2="78.75%" y2="32.5%" stroke="#8e44ad"
+                        stroke-width="2" />
+                    <line class="mobile-line" x1="50%" y1="21.67%" x2="50%" y2="51.67%" stroke="#8e44ad"
+                        stroke-width="2" />
+                </svg>
+                <div class="node node-1" tabindex="0" role="button" aria-label="Ouvrir les détails du projet Leak"
+                    onclick="openPopup('leak')" onkeydown="handleNodeKeydown(event, 'leak')">
+                    <h3>Leak</h3>
+                    <p>Jeux vidéo horreur et énigmatique</p>
+                </div>
+                <div class="node node-2" tabindex="0" role="button" aria-label="Ouvrir les détails du projet Undead"
+                    onclick="openPopup('undead')" onkeydown="handleNodeKeydown(event, 'undead')">
+                    <h3>Undead</h3>
+                    <p>Jeux de combat contre zombies</p>
+                </div>
             </div>
-            <div class="node node-2" onclick="openPopup('undead')">
-                <h3>Undead</h3>
-                <p>Jeux de combat contre zombies</p>
+
+            <!-- Popups -->
+            <div id="popup-leak" class="popup" role="dialog" aria-modal="true" aria-labelledby="popup-leak-title">
+                <div class="popup-content">
+                    <h2 id="popup-leak-title">Leak</h2>
+                    <p>Un jeu vidéo d'horreur énigmatique où les joueurs explorent un manoir hanté, résolvant des
+                        énigmes complexes pour découvrir des secrets cachés. Développé avec Unity et C#.</p>
+                    <img src="https://via.placeholder.com/400x200?text=Leak+Gameplay"
+                        alt="Capture d'écran du gameplay de Leak"
+                        style="max-width: 100%; border-radius: 8px; margin-top: 1rem;">
+                    <p><strong>Technologies :</strong> Unity, C#, Blender</p>
+                    <p><strong>Rôle :</strong> Game Designer, Programmeur</p>
+                    <button class="close-btn" aria-label="Fermer la fenêtre de détails du projet Leak"
+                        onclick="closePopup('leak')">×</button>
+                </div>
             </div>
-        </div>
-
-        <!-- Popups -->
-        <div id="popup-leak" class="popup">
-            <div class="popup-content">
-                <span class="close-btn" onclick="closePopup('leak')">×</span>
-                <h2>Leak</h2>
-                <p>Un jeu vidéo d'horreur énigmatique où les joueurs explorent un manoir hanté, résolvant des énigmes
-                    complexes pour découvrir des secrets cachés. Développé avec Unity et C#.</p>
-                <img src="https://via.placeholder.com/400x200?text=Leak+Gameplay" alt="Leak Gameplay"
-                    style="max-width: 100%; border-radius: 8px; margin-top: 1rem;">
-                <p><strong>Technologies :</strong> Unity, C#, Blender</p>
-                <p><strong>Rôle :</strong> Game Designer, Programmeur</p>
+            <div id="popup-undead" class="popup" role="dialog" aria-modal="true" aria-labelledby="popup-undead-title">
+                <div class="popup-content">
+                    <h2 id="popup-undead-title">Undead</h2>
+                    <p>Un jeu de combat contre des hordes de zombies dans un monde post-apocalyptique. Les joueurs
+                        utilisent des armes personnalisées pour survivre. Développé avec Unreal Engine.</p>
+                    <img src="https://via.placeholder.com/400x200?text=Undead+Gameplay"
+                        alt="Capture d'écran du gameplay de Undead"
+                        style="max-width: 100%; border-radius: 8px; margin-top: 1rem;">
+                    <p><strong>Technologies :</strong> Unreal Engine, Blueprints, C++</p>
+                    <p><strong>Rôle :</strong> Développeur, Level Designer</p>
+                    <button class="close-btn" aria-label="Fermer la fenêtre de détails du projet Undead"
+                        onclick="closePopup('undead')">×</button>
+                </div>
             </div>
-        </div>
-        <div id="popup-undead" class="popup">
-            <div class="popup-content">
-                <span class="close-btn" onclick="closePopup('undead')">×</span>
-                <h2>Undead</h2>
-                <p>Un jeu de combat contre des hordes de zombies dans un monde post-apocalyptique. Les joueurs utilisent
-                    des armes personnalisées pour survivre. Développé avec Unreal Engine.</p>
-                <img src="https://via.placeholder.com/400x200?text=Undead+Gameplay" alt="Undead Gameplay"
-                    style="max-width: 100%; border-radius: 8px; margin-top: 1rem;">
-                <p><strong>Technologies :</strong> Unreal Engine, Blueprints, C++</p>
-                <p><strong>Rôle :</strong> Développeur, Level Designer</p>
+        </section>
+
+        <section class="contact-section" role="region" aria-labelledby="contact-heading">
+            <h2 id="contact-heading">Contact</h2>
+            <div class="contact-container">
+                <div class="contact-form">
+                    <h3 id="contact-form-heading">Me contacter</h3>
+                    <form id="contact-form" action="https://formsubmit.co/mathisvassypro@gmail.com" method="POST">
+                        <label for="lastname" id="lastname-label">Nom :</label>
+                        <input type="text" id="lastname" name="lastname" placeholder="Votre nom" required
+                            aria-labelledby="lastname-label">
+
+                        <label for="firstname" id="firstname-label">Prénom :</label>
+                        <input type="text" id="firstname" name="firstname" placeholder="Votre prénom" required
+                            aria-labelledby="firstname-label">
+
+                        <label for="email" id="email-label">Adresse mail :</label>
+                        <input type="email" id="email" name="email" placeholder="Votre adresse mail" required
+                            aria-labelledby="email-label">
+
+                        <label for="message" id="message-label">Message :</label>
+                        <textarea id="message" name="message" placeholder="Votre message" rows="5" required
+                            aria-labelledby="message-label"></textarea>
+
+                        <input type="hidden" name="_subject" value="Nouveau message depuis votre portfolio">
+                        <input type="hidden" name="_next" value="">
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_template" value="table">
+
+                        <button type="submit">Envoyer</button>
+                    </form>
+                </div>
+                <div class="contact-info">
+                    <h3 id="contact-info-heading">Mes informations</h3>
+                    <p>Email : <a
+                            href="mailto:mathisvassypro@gmail.com?subject=Contact%20via%20Portfolio&body=Bonjour%20Mathis,%0D%0AJe%20vous%20contacte%20au%20sujet%20de..."
+                            aria-label="Envoyer un email à Mathis Vassy">mathisvassypro@gmail.com</a></p>
+                    <p>LinkedIn : <a href="https://www.linkedin.com/in/mathis-vassy/"
+                            aria-label="Profil LinkedIn de Mathis Vassy">Mathis Vassy</a></p>
+                    <p>GitHub : <a href="https://github.com/VeldrX" aria-label="Profil GitHub de VeldrX">VeldrX</a></p>
+                    <p class="note">(Si l'email ne s'ouvre pas, utilisez le formulaire à gauche !)</p>
+                </div>
             </div>
-        </div>
-    </section>
-
-    <section class="contact-section">
-        <h2>Contact</h2>
-        <div class="contact-container">
-            <div class="contact-form">
-                <h3>Me contacter</h3>
-                <form id="contact-form" action="https://formsubmit.co/mathisvassypro@gmail.com" method="POST">
-                    <label for="lastname">Nom :</label>
-                    <input type="text" id="lastname" name="lastname" placeholder="Votre nom" required>
-
-                    <label for="firstname">Prénom :</label>
-                    <input type="text" id="firstname" name="firstname" placeholder="Votre prénom" required>
-
-                    <label for="email">Adresse mail :</label>
-                    <input type="email" id="email" name="email" placeholder="Votre adresse mail" required>
-
-                    <label for="message">Message :</label>
-                    <textarea id="message" name="message" placeholder="Votre message" rows="5" required></textarea>
-
-                    <input type="hidden" name="_subject" value="Nouveau message depuis votre portfolio">
-                    <input type="hidden" name="_next" value="">
-                    <input type="hidden" name="_captcha" value="false">
-                    <input type="hidden" name="_template" value="table">
-
-                    <button type="submit">Envoyer</button>
-                </form>
-            </div>
-            <div class="contact-info">
-                <h3>Mes informations</h3>
-                <p>Email : <a
-                        href="mailto:mathisvassypro@gmail.com?subject=Contact%20via%20Portfolio&body=Bonjour%20Mathis,%0D%0AJe%20vous%20contacte%20au%20sujet%20de...">mathisvassypro@gmail.com</a>
-                </p>
-                <p>LinkedIn : <a href="https://www.linkedin.com/in/mathis-vassy/">Mathis Vassy</a></p>
-                <p>GitHub : <a href="https://github.com/VeldrX">VeldrX</a></p>
-                <p class="note">(Si l'email ne s'ouvre pas, utilisez le formulaire à gauche !)</p>
-            </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <script>
+        // Store the last focused element before opening popup
+        let lastFocusedElement = null;
+
         // FormSubmit AJAX
         document.querySelector('#contact-form').addEventListener('submit', function (event) {
             event.preventDefault();
@@ -138,13 +156,59 @@
                 });
         });
 
-        // Popup Control
+        // Popup Control with Focus Management
         function openPopup(project) {
-            document.getElementById(`popup-${project}`).style.display = 'flex';
+            lastFocusedElement = document.activeElement;
+            const popup = document.getElementById(`popup-${project}`);
+            popup.style.display = 'flex';
+            popup.setAttribute('aria-hidden', 'false');
+            document.querySelector('header').setAttribute('aria-hidden', 'true');
+            document.querySelector('main').setAttribute('aria-hidden', 'true');
+            const firstFocusable = popup.querySelector('.popup-content h2');
+            firstFocusable.focus();
+
+            // Trap focus within popup
+            const focusableElements = popup.querySelectorAll('h2, p, img, button');
+            const firstElement = focusableElements[0];
+            const lastElement = focusableElements[focusableElements.length - 1];
+
+            popup.addEventListener('keydown', function trapFocus(event) {
+                if (event.key === 'Tab') {
+                    if (event.shiftKey) {
+                        if (document.activeElement === firstElement) {
+                            event.preventDefault();
+                            lastElement.focus();
+                        }
+                    } else {
+                        if (document.activeElement === lastElement) {
+                            event.preventDefault();
+                            firstElement.focus();
+                        }
+                    }
+                }
+                if (event.key === 'Escape') {
+                    closePopup(project);
+                }
+            });
         }
 
         function closePopup(project) {
-            document.getElementById(`popup-${project}`).style.display = 'none';
+            const popup = document.getElementById(`popup-${project}`);
+            popup.style.display = 'none';
+            popup.setAttribute('aria-hidden', 'true');
+            document.querySelector('header').setAttribute('aria-hidden', 'false');
+            document.querySelector('main').setAttribute('aria-hidden', 'false');
+            if (lastFocusedElement) {
+                lastFocusedElement.focus();
+            }
+        }
+
+        // Handle keydown on nodes for Enter/Space
+        function handleNodeKeydown(event, project) {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                openPopup(project);
+            }
         }
     </script>
 </body>
