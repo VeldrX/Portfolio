@@ -9,16 +9,17 @@
 </head>
 
 <body>
+    <a href="#main-content" class="skip-link sr-only">Passer au contenu principal</a>
     <header role="banner">
         <h1>Mathis VASSY</h1>
     </header>
 
-    <main role="main">
+    <main role="main" id="main-content">
         <section class="about-section" role="region" aria-labelledby="about-heading">
             <h2 id="about-heading" class="sr-only">À propos</h2>
             <img src="https://via.placeholder.com/150" alt="Photo de profil de Mathis Vassy">
             <p>
-                Etudiant en deuxième année à Ynov Campus Lyon, je m'intéresse au domaine de la Data et notamment à l'IA.
+                Étudiant en deuxième année à Ynov Campus Lyon, je m'intéresse au domaine de la Data et notamment à l'IA.
             </p>
         </section>
 
@@ -80,27 +81,23 @@
                 <div class="contact-form">
                     <h3 id="contact-form-heading">Me contacter</h3>
                     <form id="contact-form" action="https://formsubmit.co/mathisvassypro@gmail.com" method="POST">
+                        <div id="form-message" aria-live="polite" role="status"></div>
                         <label for="lastname" id="lastname-label">Nom :</label>
                         <input type="text" id="lastname" name="lastname" placeholder="Votre nom" required
                             aria-labelledby="lastname-label">
-
                         <label for="firstname" id="firstname-label">Prénom :</label>
                         <input type="text" id="firstname" name="firstname" placeholder="Votre prénom" required
                             aria-labelledby="firstname-label">
-
                         <label for="email" id="email-label">Adresse mail :</label>
                         <input type="email" id="email" name="email" placeholder="Votre adresse mail" required
                             aria-labelledby="email-label">
-
                         <label for="message" id="message-label">Message :</label>
                         <textarea id="message" name="message" placeholder="Votre message" rows="5" required
                             aria-labelledby="message-label"></textarea>
-
                         <input type="hidden" name="_subject" value="Nouveau message depuis votre portfolio">
                         <input type="hidden" name="_next" value="">
                         <input type="hidden" name="_captcha" value="false">
                         <input type="hidden" name="_template" value="table">
-
                         <button type="submit">Envoyer</button>
                     </form>
                 </div>
@@ -126,13 +123,10 @@
         document.querySelector('#contact-form').addEventListener('submit', function (event) {
             event.preventDefault();
             const form = this;
-            const formMessage = document.createElement('div');
-            formMessage.id = 'form-message';
-            formMessage.style.marginBottom = '1rem';
-            formMessage.style.padding = '1rem';
-            formMessage.style.borderRadius = '4px';
-            formMessage.style.color = '#fff';
-            form.insertBefore(formMessage, form.firstChild);
+            const formMessage = document.getElementById('form-message');
+
+            // Clear previous message
+            formMessage.textContent = '';
 
             fetch(form.action, {
                 method: 'POST',
@@ -146,6 +140,9 @@
                         formMessage.textContent = 'Message envoyé avec succès !';
                         formMessage.style.backgroundColor = '#2ecc71';
                         form.reset();
+                        // Move focus to the message for keyboard users
+                        formMessage.setAttribute('tabindex', '-1');
+                        formMessage.focus();
                     } else {
                         throw new Error('Erreur lors de l\'envoi.');
                     }
@@ -153,6 +150,9 @@
                 .catch(error => {
                     formMessage.textContent = 'Erreur lors de l\'envoi : ' + error.message;
                     formMessage.style.backgroundColor = '#e74c3c';
+                    // Move focus to the message for keyboard users
+                    formMessage.setAttribute('tabindex', '-1');
+                    formMessage.focus();
                 });
         });
 
@@ -168,7 +168,7 @@
             firstFocusable.focus();
 
             // Trap focus within popup
-            const focusableElements = popup.querySelectorAll('h2, p, img, button');
+            const focusableElements = popup.querySelectorAll('h2, p, button'); // Removed img from focusable
             const firstElement = focusableElements[0];
             const lastElement = focusableElements[focusableElements.length - 1];
 
