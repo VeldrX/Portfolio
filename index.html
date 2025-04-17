@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Étudiant en IA</title>
+    <link href="style.css" rel="stylesheet" />
+</head>
+
+<body>
+    <header>
+        <h1>Mathis VASSY</h1>
+    </header>
+
+    <section class="about-section">
+        <img src="https://via.placeholder.com/150" alt="Photo de profil">
+        <p>
+            Etudiant en deuxième année a Ynov Campus Lyon , je m'intéresse au domaine de la Data et notamment a l'IA.
+        </p>
+    </section>
+
+    <section class="projects-section">
+        <h2>Mes Projets</h2>
+        <div class="neural-network">
+            <svg>
+                <line class="desktop-line" x1="21.25%" y1="32.5%" x2="78.75%" y2="32.5%" stroke="#8e44ad"
+                    stroke-width="2" />
+                <line class="mobile-line" x1="50%" y1="21.67%" x2="50%" y2="51.67%" stroke="#8e44ad" stroke-width="2" />
+            </svg>
+            <div class="node node-1" onclick="openPopup('leak')">
+                <h3>Leak</h3>
+                <p>Jeux vidéo horreur et énigmatique</p>
+            </div>
+            <div class="node node-2" onclick="openPopup('undead')">
+                <h3>Undead</h3>
+                <p>Jeux de combat contre zombies</p>
+            </div>
+        </div>
+
+        <!-- Popups -->
+        <div id="popup-leak" class="popup">
+            <div class="popup-content">
+                <span class="close-btn" onclick="closePopup('leak')">×</span>
+                <h2>Leak</h2>
+                <p>Un jeu vidéo d'horreur énigmatique où les joueurs explorent un manoir hanté, résolvant des énigmes
+                    complexes pour découvrir des secrets cachés. Développé avec Unity et C#.</p>
+                <img src="https://via.placeholder.com/400x200?text=Leak+Gameplay" alt="Leak Gameplay"
+                    style="max-width: 100%; border-radius: 8px; margin-top: 1rem;">
+                <p><strong>Technologies :</strong> Unity, C#, Blender</p>
+                <p><strong>Rôle :</strong> Game Designer, Programmeur</p>
+            </div>
+        </div>
+        <div id="popup-undead" class="popup">
+            <div class="popup-content">
+                <span class="close-btn" onclick="closePopup('undead')">×</span>
+                <h2>Undead</h2>
+                <p>Un jeu de combat contre des hordes de zombies dans un monde post-apocalyptique. Les joueurs utilisent
+                    des armes personnalisées pour survivre. Développé avec Unreal Engine.</p>
+                <img src="https://via.placeholder.com/400x200?text=Undead+Gameplay" alt="Undead Gameplay"
+                    style="max-width: 100%; border-radius: 8px; margin-top: 1rem;">
+                <p><strong>Technologies :</strong> Unreal Engine, Blueprints, C++</p>
+                <p><strong>Rôle :</strong> Développeur, Level Designer</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section">
+        <h2>Contact</h2>
+        <div class="contact-container">
+            <div class="contact-form">
+                <h3>Me contacter</h3>
+                <form id="contact-form" action="https://formsubmit.co/mathisvassypro@gmail.com" method="POST">
+                    <label for="lastname">Nom :</label>
+                    <input type="text" id="lastname" name="lastname" placeholder="Votre nom" required>
+
+                    <label for="firstname">Prénom :</label>
+                    <input type="text" id="firstname" name="firstname" placeholder="Votre prénom" required>
+
+                    <label for="email">Adresse mail :</label>
+                    <input type="email" id="email" name="email" placeholder="Votre adresse mail" required>
+
+                    <label for="message">Message :</label>
+                    <textarea id="message" name="message" placeholder="Votre message" rows="5" required></textarea>
+
+                    <input type="hidden" name="_subject" value="Nouveau message depuis votre portfolio">
+                    <input type="hidden" name="_next" value="">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_template" value="table">
+
+                    <button type="submit">Envoyer</button>
+                </form>
+            </div>
+            <div class="contact-info">
+                <h3>Mes informations</h3>
+                <p>Email : <a
+                        href="mailto:mathisvassypro@gmail.com?subject=Contact%20via%20Portfolio&body=Bonjour%20Mathis,%0D%0AJe%20vous%20contacte%20au%20sujet%20de...">mathisvassypro@gmail.com</a>
+                </p>
+                <p>LinkedIn : <a href="https://www.linkedin.com/in/mathis-vassy/">Mathis Vassy</a></p>
+                <p>GitHub : <a href="https://github.com/VeldrX">VeldrX</a></p>
+                <p class="note">(Si l'email ne s'ouvre pas, utilisez le formulaire à gauche !)</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // FormSubmit AJAX
+        document.querySelector('#contact-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const form = this;
+            const formMessage = document.createElement('div');
+            formMessage.id = 'form-message';
+            formMessage.style.marginBottom = '1rem';
+            formMessage.style.padding = '1rem';
+            formMessage.style.borderRadius = '4px';
+            formMessage.style.color = '#fff';
+            form.insertBefore(formMessage, form.firstChild);
+
+            fetch(form.action, {
+                method: 'POST',
+                body: new FormData(form),
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+                .then(response => {
+                    if (response.ok) {
+                        formMessage.textContent = 'Message envoyé avec succès !';
+                        formMessage.style.backgroundColor = '#2ecc71';
+                        form.reset();
+                    } else {
+                        throw new Error('Erreur lors de l\'envoi.');
+                    }
+                })
+                .catch(error => {
+                    formMessage.textContent = 'Erreur lors de l\'envoi : ' + error.message;
+                    formMessage.style.backgroundColor = '#e74c3c';
+                });
+        });
+
+        // Popup Control
+        function openPopup(project) {
+            document.getElementById(`popup-${project}`).style.display = 'flex';
+        }
+
+        function closePopup(project) {
+            document.getElementById(`popup-${project}`).style.display = 'none';
+        }
+    </script>
+</body>
+
+</html>
